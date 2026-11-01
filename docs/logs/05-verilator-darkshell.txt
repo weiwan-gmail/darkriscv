@@ -1,0 +1,60 @@
+make -C sim verilator
+make[1]: Entering directory '/workspace/sim'
+make -C verilator sim
+make[2]: Entering directory '/workspace/sim/verilator'
+cd .. && ./verilator/obj_dir/Vdarksocv  2>&1 | tee verilator/last-run.log
+Built with Verilator 5.020 2024-01-01.
+dpram: unified BRAM w/ 2048x32-bit
+
+              vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+                  vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrr       vvvvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrr      vvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrrrr    vvvvvvvvvvvvvvvvvvvvvvvv
+rrrrrrrrrrrrrrrr      vvvvvvvvvvvvvvvvvvvvvv  
+rrrrrrrrrrrrr       vvvvvvvvvvvvvvvvvvvvvv    
+rr                vvvvvvvvvvvvvvvvvvvvvv      
+rr            vvvvvvvvvvvvvvvvvvvvvvvv      rr
+rrrr      vvvvvvvvvvvvvvvvvvvvvvvvvv      rrrr
+rrrrrr      vvvvvvvvvvvvvvvvvvvvvv      rrrrrr
+rrrrrrrr      vvvvvvvvvvvvvvvvvv      rrrrrrrr
+rrrrrrrrrr      vvvvvvvvvvvvvv      rrrrrrrrrr
+rrrrrrrrrrrr      vvvvvvvvvv      rrrrrrrrrrrr
+rrrrrrrrrrrrrr      vvvvvv      rrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrr      vv      rrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrrrr          rrrrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrrrrrr      rrrrrrrrrrrrrrrrrrrr
+rrrrrrrrrrrrrrrrrrrrrr  rrrrrrrrrrrrrrrrrrrrrr
+       INSTRUCTION SETS WANT TO BE FREE
+
+boot0: main@0200 stack@1f7c
+board: simulation only (id=0)
+build: Sun, 01 Nov 2026 23:34:49 +0000 for rv32i_zicsr
+core0: darkriscv@100MHz rv32i little-endian 
+bram0: text@0200+1418 data@1618+08f8 stack@2000
+bram0: 240 bytes free
+uart0: 115.2kbps (div=25603)
+timr0: 1000Hz (div=99999)
+csrxx: csr_test=ff0000ff
+stvec: handler@0fdc, debug enabled...
+debug: *** exception at 045c w/ mcause=03/[breakpoint] ***
+debug: *** exception at 0464 w/ mcause=04/[load address align] ***
+mtvec: handler@0f68, enabling interrupts...
+mtvec: interrupts enabled!
+
+Welcome to DarkRISCV!
+
+659> the __INTERACTIVE__ option is disabled, ending simulation...
+****************************************************************************
+DarkRISCV Pipeline Report (67013 clocks, 38637 instr, CPI = 1.73):
+core0: 58% run, 6% wait (0% i-bus, 6% d-bus/rd, 0% d-bus/wr), 36% flush
+****************************************************************************
+- ../../rtl/darkriscv.v:897: Verilog $finish
+SIM DONE after 67311 clock cycles
+verilator_exit=0
+ALL TESTS PASSED.
+verilator teaching sim ok.
+make[2]: Leaving directory '/workspace/sim/verilator'
+make[1]: Leaving directory '/workspace/sim'

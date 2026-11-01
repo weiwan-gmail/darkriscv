@@ -1,0 +1,54 @@
+make -C src clean all
+make: Entering directory '/workspace/src'
+make -C darklibc clean
+make[1]: Entering directory '/workspace/src/darklibc'
+rm -f stdio.s io.s string.s misc.s unistd.s stdio.o io.o string.o misc.o unistd.o util.o  darklibc.{S,bin,lst,map,ram,rom,x86,text,data,bin,ld,o,mem,rom.mem,ram.mem,a}
+make[1]: Leaving directory '/workspace/src/darklibc'
+make -C darkshell clean
+make[1]: Entering directory '/workspace/src/darkshell'
+rm -f main.s main.o darkshell.{S,bin,lst,map,ram,rom,x86,text,data,bin,ld,o,mem,rom.mem,ram.mem,a} darkshell_uart.bin
+make[1]: Leaving directory '/workspace/src/darkshell'
+rm -f boot.o darksocv.{S,bin,lst,map,ram,rom,x86,text,data,bin,ld,o,mem,rom.mem,ram.mem} darksocv_uart.bin
+/usr/bin/riscv64-unknown-elf-gcc -march=rv32i_zicsr -mabi=ilp32 -mlittle-endian   -c -o boot.o boot.S
+/usr/bin/riscv64-unknown-elf-cpp -P  -DMLEN=$(awk '/define[ \t]+MLEN[ \t]/ { n=1; e=$3+0; while (e--) n*=2; print n }' ../rtl/config.vh) darksocv.lds darksocv.ld
+make -C darkshell all
+make[1]: Entering directory '/workspace/src/darkshell'
+/usr/bin/riscv64-unknown-elf-gcc -Wall -fcommon -ffreestanding -Os -fno-delete-null-pointer-checks -mlittle-endian -march=rv32i_zicsr -mabi=ilp32 -Idarklibc/include -I../darklibc/include -D__RISCV__ -DBUILD="\"Sun, 01 Nov 2026 23:34:49 +0000\"" -DARCH="\"rv32i_zicsr\"" -mno-div -mcmodel=medany  -S main.c -o main.s
+/usr/bin/riscv64-unknown-elf-as -march=rv32i_zicsr -mabi=ilp32 -mlittle-endian -c main.s -o main.o
+/usr/bin/riscv64-unknown-elf-ar -rcs darkshell.a main.o
+/usr/bin/riscv64-unknown-elf-ranlib darkshell.a
+sources ok for darkshell.a.
+make[1]: Leaving directory '/workspace/src/darkshell'
+make -C darklibc all
+make[1]: Entering directory '/workspace/src/darklibc'
+/usr/bin/riscv64-unknown-elf-gcc -Wall -fcommon -ffreestanding -Os -fno-delete-null-pointer-checks -mlittle-endian -march=rv32i_zicsr -mabi=ilp32 -Idarklibc/include -I../darklibc/include -D__RISCV__ -DBUILD="\"Sun, 01 Nov 2026 23:34:49 +0000\"" -DARCH="\"rv32i_zicsr\"" -mno-div -mcmodel=medany  -Iinclude -S stdio.c -o stdio.s
+/usr/bin/riscv64-unknown-elf-gcc -Wall -fcommon -ffreestanding -Os -fno-delete-null-pointer-checks -mlittle-endian -march=rv32i_zicsr -mabi=ilp32 -Idarklibc/include -I../darklibc/include -D__RISCV__ -DBUILD="\"Sun, 01 Nov 2026 23:34:49 +0000\"" -DARCH="\"rv32i_zicsr\"" -mno-div -mcmodel=medany  -Iinclude -S io.c -o io.s
+/usr/bin/riscv64-unknown-elf-gcc -Wall -fcommon -ffreestanding -Os -fno-delete-null-pointer-checks -mlittle-endian -march=rv32i_zicsr -mabi=ilp32 -Idarklibc/include -I../darklibc/include -D__RISCV__ -DBUILD="\"Sun, 01 Nov 2026 23:34:49 +0000\"" -DARCH="\"rv32i_zicsr\"" -mno-div -mcmodel=medany  -Iinclude -S string.c -o string.s
+/usr/bin/riscv64-unknown-elf-gcc -Wall -fcommon -ffreestanding -Os -fno-delete-null-pointer-checks -mlittle-endian -march=rv32i_zicsr -mabi=ilp32 -Idarklibc/include -I../darklibc/include -D__RISCV__ -DBUILD="\"Sun, 01 Nov 2026 23:34:49 +0000\"" -DARCH="\"rv32i_zicsr\"" -mno-div -mcmodel=medany  -Iinclude -S misc.c -o misc.s
+/usr/bin/riscv64-unknown-elf-gcc -Wall -fcommon -ffreestanding -Os -fno-delete-null-pointer-checks -mlittle-endian -march=rv32i_zicsr -mabi=ilp32 -Idarklibc/include -I../darklibc/include -D__RISCV__ -DBUILD="\"Sun, 01 Nov 2026 23:34:49 +0000\"" -DARCH="\"rv32i_zicsr\"" -mno-div -mcmodel=medany  -Iinclude -S unistd.c -o unistd.s
+/usr/bin/riscv64-unknown-elf-as -march=rv32i_zicsr -mabi=ilp32 -mlittle-endian -c stdio.s -o stdio.o
+/usr/bin/riscv64-unknown-elf-as -march=rv32i_zicsr -mabi=ilp32 -mlittle-endian -c io.s -o io.o
+/usr/bin/riscv64-unknown-elf-as -march=rv32i_zicsr -mabi=ilp32 -mlittle-endian -c string.s -o string.o
+/usr/bin/riscv64-unknown-elf-as -march=rv32i_zicsr -mabi=ilp32 -mlittle-endian -c misc.s -o misc.o
+/usr/bin/riscv64-unknown-elf-as -march=rv32i_zicsr -mabi=ilp32 -mlittle-endian -c unistd.s -o unistd.o
+/usr/bin/riscv64-unknown-elf-gcc -march=rv32i_zicsr -mabi=ilp32 -mlittle-endian   -c -o util.o util.S
+/usr/bin/riscv64-unknown-elf-ar -rcs darklibc.a stdio.o io.o string.o misc.o unistd.o util.o 
+/usr/bin/riscv64-unknown-elf-ranlib darklibc.a
+sources ok for darklibc.a.
+make[1]: Leaving directory '/workspace/src/darklibc'
+/usr/bin/riscv64-unknown-elf-ld -Tdarksocv.ld -Map=darksocv.map -m elf32lriscv -static -gc-sections --entry=_start  -o darksocv.o boot.o darkshell/darkshell.a darklibc/darklibc.a 
+/usr/bin/riscv64-unknown-elf-ld: warning: darksocv.o has a LOAD segment with RWX permissions
+/usr/bin/riscv64-unknown-elf-objdump -D darksocv.o > darksocv.S
+/usr/bin/riscv64-unknown-elf-objcopy -O binary  darksocv.o darksocv.bin
+hexdump -ve '1/4 "%08x\n"' darksocv.bin > darksocv.mem
+dd if=darksocv.bin of=darksocv_uart.bin skip=512 bs=1
+7440+0 records in
+7440+0 records out
+7440 bytes (7.4 kB, 7.3 KiB) copied, 0.0045919 s, 1.6 MB/s
+rm darksocv.bin
+wc -l darksocv.mem
+1988 darksocv.mem
+mem ok for little-endian.
+echo build is ok for darksocv.mem
+build is ok for darksocv.mem
+make: Leaving directory '/workspace/src'

@@ -50,6 +50,18 @@ all:
 src/darksocv.mem:
 	make -C src all
 
+# Teaching / learning path. Default `make` remains Icarus (upstream).
+.PHONY: toolchain-info test_verilator test_icarus
+
+toolchain-info:
+	$(MAKE) -C src toolchain-info
+
+test_verilator: src/darksocv.mem
+	$(MAKE) -C sim verilator
+
+test_icarus: src/darksocv.mem
+	$(MAKE) -C sim NO_WAVE=1
+
 install:
 	make -C boards install
 

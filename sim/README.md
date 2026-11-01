@@ -7,7 +7,27 @@ The main simulation tool is the opensource tools `Icarus Verilog` and `GTKWave`.
 Alternatively, it is possible to use proprietary simulation tools, as
 the Xilinx ISIM and ModelSIM.
 
+From the repo root (after `make -C src all`):
+
+```shell
+make                # Icarus, writes sim/darksocv.vcd (upstream default)
+make test_icarus    # same firmware, no VCD (`NO_WAVE=1`)
+```
+
 TODO: simulation models for external peripherals, such as the DarkUART.
+
+## Verilator (headless teaching path)
+The documented learning command is:
+
+```shell
+make test_verilator
+```
+
+This builds `src/darksocv.mem` from C (`darkshell`) if needed, compiles
+DarkSoCV with Verilator, and drives clock/reset from
+`sim/verilator/tb_verilator.cpp`. UART `$write` and the `>` prompt that
+ends the sim are the existing RTL protocol. See `sim/verilator/README.md`
+and `docs/TUTORIAL_zh.md`.
 
 ## Verilator / Cosimulation
 As an alternative to Icarus Verilog, `Verilator` + `ImGui` (and/or gtkwave) can be used,

@@ -84,10 +84,17 @@ else
 	TARGETS = $(PROJ).mem
 endif
 
-.PHONY: all
+.PHONY: all toolchain-info
 
 all: $(TARGETS) $(DEPS)
 	-echo build is ok for $(TARGETS)
+
+toolchain-info:
+	@echo CROSS=$(CROSS)
+	@echo CCPATH=$(CCPATH)
+	@echo CC=$(CC)
+	@echo ARCH=$(ARCH) ABI=$(ABI) ENDIAN=$(ENDIAN)
+	@command -v $(CC) >/dev/null && $(CC) --version | head -1 || echo "CC not found on PATH/CCPATH"
 
 $(DARKLIBC)/$(DARKLIBC).a:
 	make -C $(DARKLIBC) all
@@ -106,8 +113,9 @@ clean:
 %.s: %.c Makefile
 	$(CC) $(CFLAGS) -S $< -o $@
 
+# mawk (Ubuntu awk) has no `**`; compute 2^MLEN with a loop.
 $(PROJ).ld: $(PROJ).lds Makefile
-	$(CPP) $(CPFLAGS) -DMLEN=$$(awk '/define MLEN/ { print 2**$$3 }' ../rtl/config.vh) $(PROJ).lds $(PROJ).ld
+	$(CPP) $(CPFLAGS) -DMLEN=$$(awk '/define[ \t]+MLEN[ \t]/ { n=1; e=$$3+0; while (e--) n*=2; print n }' ../rtl/config.vh) $(PROJ).lds $(PROJ).ld
 	
 $(PROJ).o: $(OBJS) $(PROJ).ld $(LIBS)
 	#$(RL) $(LDLIBS)

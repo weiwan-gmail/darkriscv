@@ -33,17 +33,30 @@ ifndef HOST_CC
     export HOST_CFLAGS = -Wall -Wno-incompatible-library-redeclaration -I../common -O2
 endif
 
-ifndef CROSS
-    export CROSS = riscv32-embedded-elf
-    #export CROSS = riscv64-unknown-elf
-    #export CROSS = riscv32-unknown-elf
-    #export CROSS = riscv-elf
-    #export CROSS = riscv32-unknown-elf
+# CROSS / CCPATH auto-detect (Ubuntu gcc-riscv64-unknown-elf, then
+# riscv32-unknown-elf, xpack riscv-none-elf, then the upstream tarball path).
+# Override with e.g. make CROSS=riscv32-unknown-elf CCPATH=/opt/riscv/bin
+ifeq ($(origin CROSS),undefined)
+    ifneq ($(shell command -v riscv64-unknown-elf-gcc 2>/dev/null),)
+        export CROSS = riscv64-unknown-elf
+    else ifneq ($(shell command -v riscv32-unknown-elf-gcc 2>/dev/null),)
+        export CROSS = riscv32-unknown-elf
+    else ifneq ($(shell command -v riscv-none-elf-gcc 2>/dev/null),)
+        export CROSS = riscv-none-elf
+    else
+        export CROSS = riscv32-embedded-elf
+    endif
+endif
 
-    export CCPATH = /usr/local/share/gcc-$(CROSS)/bin
-    #export CCPATH = /usr/local/bin
-    #export CCPATH = /opt/riscv/bin
-    #export CCPATH = /usr/local/share/toolchain-$(CROSS)/bin
+ifeq ($(origin CCPATH),undefined)
+    ifneq ($(shell command -v $(CROSS)-gcc 2>/dev/null),)
+        export CCPATH = $(patsubst %/,%,$(dir $(shell command -v $(CROSS)-gcc)))
+    else
+        export CCPATH = /usr/local/share/gcc-$(CROSS)/bin
+        #export CCPATH = /usr/local/bin
+        #export CCPATH = /opt/riscv/bin
+        #export CCPATH = /usr/local/share/toolchain-$(CROSS)/bin
+    endif
 endif
 
     #export ARCH = rv32e_zicsr

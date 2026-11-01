@@ -341,6 +341,10 @@
     `define SIMULATION 4
 `endif
 
+`ifdef VERILATOR
+    `define SIMULATION 5
+`endif
+
 // the board definition is done on the tool, otherwise we assume simulation
 
 `ifdef AVNET_MICROBOARD_LX9

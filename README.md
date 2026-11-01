@@ -23,10 +23,27 @@ The VCD file can be checked with GTKWave:
 
 So, you can add the signals from each module and explore the waveforms! :)
 
+## Learning ladder (this fork)
+
+Chinese tutorial: **[docs/TUTORIAL_zh.md](docs/TUTORIAL_zh.md)** ·
+English summary: [docs/TUTORIAL.md](docs/TUTORIAL.md) ·
+commands: [docs/LEARNING.md](docs/LEARNING.md)
+
+```bash
+sudo apt-get install -y iverilog verilator gcc-riscv64-unknown-elf build-essential
+make toolchain-info
+make test_verilator    # C darkshell → hex → Verilator; Welcome to DarkRISCV / ALL TESTS PASSED
+make test_icarus       # same image on Icarus, no VCD
+```
+
+Default `make` is still upstream Icarus + VCD. Work is on **develop**.
+Next core on the ladder: **SERV**.
+
 ## Table of Contents
 
 - [DarkRISCV](#darkriscv)
 	- [Table of Contents](#table-of-contents)
+	- [Learning ladder (this fork)](#learning-ladder-this-fork)
 	- [Introduction](#introduction)
 	- [History](#history)
 	- [Project Background](#project-background)
