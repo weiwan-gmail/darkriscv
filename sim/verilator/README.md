@@ -17,4 +17,6 @@ make -C sim/verilator sim       # or from repo root: make test_verilator
 PASS lines: `Welcome to DarkRISCV!`, then the prompt ends the sim, then
 `SIM DONE` / `ALL TESTS PASSED.` / `verilator_exit=0`.
 
+Optional CMake wrap of this same path (Make unchanged): [CMAKE.md](../../CMAKE.md).
+
 Optional VCD: `make TRACE=1 sim PLUSARGS=+vcd` (from this directory).

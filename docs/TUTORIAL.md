@@ -90,6 +90,10 @@ make test_icarus
 
 Optional VCD: `make -C sim/verilator TRACE=1 sim PLUSARGS=+vcd`
 
+Optional CMake wrap of the same Verilator path: [CMAKE.md](../CMAKE.md)
+(`cmake-system/` / `cmake-conan/`). Make/Bazel stay. Windows PC2023 is a
+follow-up.
+
 ## PASS / FAIL
 
 - **PASS (Verilator):** `Welcome to DarkRISCV!` and `ALL TESTS PASSED.` /

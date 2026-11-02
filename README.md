@@ -36,8 +36,18 @@ make test_verilator    # C darkshell → hex → Verilator; Welcome to DarkRISCV
 make test_icarus       # same image on Icarus, no VCD
 ```
 
+Optional CMake dual-tree (Make/Bazel unchanged): [`CMAKE.md`](CMAKE.md),
+[`cmake-system/`](cmake-system/), [`cmake-conan/`](cmake-conan/).
+
+```bash
+cmake -S cmake-system -B build-system -DCMAKE_BUILD_TYPE=Release
+cmake --build build-system --target sim
+ctest --test-dir build-system --output-on-failure
+```
+
 Default `make` is still upstream Icarus + VCD. Work is on **develop**.
-Next core on the ladder: **SERV**.
+Next core on the ladder: **SERV**. Windows PC2023 CMake (withlimon
+`verilator_bin.exe`) is a follow-up.
 
 ## Table of Contents
 
@@ -228,6 +238,7 @@ following organization:
 - [src](src): the source code for the test firmware (boot.c, main.c etc in C language)
 - [rtl](rtl): the source code for the *DarkRISCV* core and the support logic (Verilog)
 - [sim](sim): the source code for the simulation to test the rtl files (currently via icarus)
+- [cmake](cmake) / [cmake-system](cmake-system) / [cmake-conan](cmake-conan): optional CMake dual-tree wrapping the headless Verilator path (see [CMAKE.md](CMAKE.md)); Make/Bazel stay
 - [boards](boards): support and examples for different boards (currently via Xilinx ISE)
 - [tmp](tmp): empty, but the ISE will create lots of files here)
 

@@ -27,7 +27,8 @@ This builds `src/darksocv.mem` from C (`darkshell`) if needed, compiles
 DarkSoCV with Verilator, and drives clock/reset from
 `sim/verilator/tb_verilator.cpp`. UART `$write` and the `>` prompt that
 ends the sim are the existing RTL protocol. See `sim/verilator/README.md`
-and `docs/TUTORIAL_zh.md`.
+and `docs/TUTORIAL_zh.md`. Optional CMake wrap of this same path:
+[CMAKE.md](../CMAKE.md) (`cmake-system/` / `cmake-conan/`).
 
 ## Verilator / Cosimulation
 As an alternative to Icarus Verilog, `Verilator` + `ImGui` (and/or gtkwave) can be used,

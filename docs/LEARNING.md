@@ -47,7 +47,21 @@ Upstream default (Icarus + VCD) is still:
 make
 ```
 
-### 2) Pieces, if you want to run them apart
+### 2) Optional CMake dual-tree (Make unchanged)
+
+Same `cmake-system/` + `cmake-conan/` shape as
+[rtl-learning-plan](https://github.com/weiwan-gmail/rtl-learning-plan).
+How-to: [CMAKE.md](../CMAKE.md). Wraps `sim/verilator/` only.
+
+```bash
+cmake -S cmake-system -B build-system -DCMAKE_BUILD_TYPE=Release
+cmake --build build-system --target sim
+ctest --test-dir build-system --output-on-failure
+```
+
+Windows PC2023 (withlimon `verilator_bin.exe`) is a follow-up.
+
+### 3) Pieces, if you want to run them apart
 
 ```bash
 make -C src all                 # C → src/darksocv.mem
