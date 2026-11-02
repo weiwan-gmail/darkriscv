@@ -1,0 +1,106 @@
+# inspect: darkriscv teaching tree
+date: Sun, 01 Nov 2026 23:35:55 +0000
+
+## git
+9555119 enforce JVAL must be always multiple of 32-bit for i-bus!
+cursor/verilator-cosim-tutorial-91d9
+
+## tools
+verilator: Verilator 5.020 2024-01-01 rev (Debian 5.020-1)
+iverilog: Icarus Verilog version 12.0 (stable) ()
+riscv gcc: riscv64-unknown-elf-gcc (13.2.0-11ubuntu1+12) 13.2.0
+awk: mawk 1.3.4 20240123
+
+## make toolchain-info
+make -C src toolchain-info
+make[1]: Entering directory '/workspace/src'
+CROSS=riscv64-unknown-elf
+CCPATH=/usr/bin
+CC=/usr/bin/riscv64-unknown-elf-gcc
+ARCH=rv32i_zicsr ABI=ilp32 ENDIAN=little
+riscv64-unknown-elf-gcc (13.2.0-11ubuntu1+12) 13.2.0
+make[1]: Leaving directory '/workspace/src'
+
+## tree (depth 2, no boards internals)
+boards
+BUILD.bazel
+darkriscv.core
+doc
+docs
+LICENSE
+Makefile
+MODULE.bazel
+MODULE.bazel.lock
+README.md
+rtl
+sim
+src
+tmp
+--- rtl ---
+config.vh
+darkbridge.v
+darkcache.v
+darkio.v
+darkmac.v
+darkpll.v
+darkram.v
+darkriscv.v
+darksocv.v
+darkspi.v
+darkuart.v
+lib
+README.md
+--- sim ---
+sim:
+cosim.mk
+darksimv.v
+darksocv
+Makefile
+README.md
+trace.py
+Vdarksocv_gui.cpp
+verilator
+
+sim/verilator:
+last-run.log
+Makefile
+obj_dir
+README.md
+rtl.f
+tb_verilator.cpp
+--- src ---
+badapple
+boot.o
+boot.S
+config.mk
+coremark
+darklibc
+darkshell
+darksocv.ld
+darksocv.lds
+darksocv.map
+darksocv.mem
+darksocv.o
+darksocv.S
+darksocv_uart.bin
+dhrystone
+donut
+Makefile
+mandelbrot
+primes
+README.md
+spidemo
+
+## SIMULATION / HARVARD / MLEN
+217:// eabling the __PERFMETER__ define, in order to check how the clock cycles
+221:`define __PERFMETER__
+244:`define __HARVARD__
+253:`ifndef __HARVARD__
+267://`define __INTERACTIVE__
+287:`define MLEN 13 // 13: 8kB for darkshell
+329:    `define SIMULATION 1
+333:    `define SIMULATION 2
+337:    `define SIMULATION 3
+341:    `define SIMULATION 4
+345:    `define SIMULATION 5
+524:    //`undef __HARVARD__

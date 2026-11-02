@@ -30,6 +30,12 @@ ifndef ICARUS
     ICARUS = iverilog -Wall
 endif
 
+# Optional: skip VCD dump for faster Icarus runs (default dump is unchanged).
+#   make -C sim NO_WAVE=1
+ifdef NO_WAVE
+    ICARUS += -DNO_WAVE
+endif
+
 RTLS =  darksimv.v                      \
         ../rtl/darksocv.v               \
         ../rtl/darkbridge.v             \
@@ -110,3 +116,8 @@ $(VCDS): $(XSIM)
 
 $(XSIM): $(DEPS)
 	$(ICARUS) -I ../rtl -o $(XSIM) $(RTLS)
+
+# Headless Verilator teaching path (does not replace the Icarus default).
+.PHONY: verilator
+verilator:
+	$(MAKE) -C verilator sim
