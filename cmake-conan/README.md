@@ -32,17 +32,22 @@ ctest --test-dir build-conan --output-on-failure
 
 If Conan is missing, use `cmake-system/` instead; this tree still ships.
 
-## Windows (PC2023) — follow-up
+## Windows (PC2023)
 
 | Item | Value |
 |------|--------|
 | Worker | `D:\CursorWorker` |
-| Conan | **2.34** |
-| Verilator | [withlimon/verilator-windows](https://github.com/withlimon/verilator-windows) **`verilator_bin.exe`** |
+| Tip | `b7decce` on `develop` |
+| Conan | **2.34.0** |
+| Verilator | [withlimon/verilator-windows](https://github.com/withlimon/verilator-windows) **`verilator_bin.exe`** at `C:\msys64\mingw64\bin\verilator_bin.exe` |
+| Result | `.\build_sim.ps1` EXIT 0; ctest 1/1 Passed (`sim_darksocv`); `verilator_exit=0` |
 
 ```powershell
 cd cmake-conan
 .\build_sim.ps1
 ```
 
-Notes: [`../cmake-system/WINDOWS.md`](../cmake-system/WINDOWS.md). Always the PE `verilator_bin.exe` — never extensionless Perl `verilator`. MSVC: `CheckCXXCompilerFlag` before `verilate()`, then strip `-fcoroutines*`.
+Notes and the cmake-system row: [`../cmake-system/WINDOWS.md`](../cmake-system/WINDOWS.md).
+Always the PE `verilator_bin.exe` — never extensionless Perl `verilator`.
+MSVC: `CheckCXXCompilerFlag` before `verilate()`, then strip `-fcoroutines*`.
+The TB is ISO C++ (no `#if _WIN32` POSIX port).

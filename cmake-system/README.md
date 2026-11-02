@@ -23,6 +23,13 @@ ctest --test-dir build-system --output-on-failure
 
 Linux VM evidence: [`PASS_EVIDENCE.md`](PASS_EVIDENCE.md).
 
-## Windows (PC2023) — follow-up
+## Windows (PC2023)
 
-[withlimon/verilator-windows](https://github.com/withlimon/verilator-windows) + **`verilator_bin.exe`**. Never the extensionless Perl `verilator`. Copy-paste: [`WINDOWS.md`](WINDOWS.md). PC2023 proof of this tree is a follow-up.
+[withlimon/verilator-windows](https://github.com/withlimon/verilator-windows) +
+**`verilator_bin.exe`**. Never the extensionless Perl `verilator`. Copy-paste
+and PC2023 PASS (tip `b7decce`): [`WINDOWS.md`](WINDOWS.md).
+
+```powershell
+cd cmake-system
+.\build_sim.ps1
+```
