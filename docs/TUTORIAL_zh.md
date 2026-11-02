@@ -248,6 +248,9 @@ make -C sim/verilator sim
 
 可选波形：`make -C sim/verilator TRACE=1 sim PLUSARGS=+vcd`（默认关，仿真才快）。
 
+可选 CMake 双树（Make/Bazel 不动）把同一条 Verilator 路径包一层：
+[CMAKE.md](../CMAKE.md)。Windows PC2023（withlimon `verilator_bin.exe`）是后续。
+
 ---
 
 ## 6. 同一份镜像：Icarus

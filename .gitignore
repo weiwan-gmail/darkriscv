@@ -26,6 +26,9 @@ boards/*/darksocv.ip_user_files
 boards/*/darksocv.sim
 fusesoc.conf
 build
+/build-system/
+/build-conan/
+CMakeUserPresets.json
 iseconfig
 *.a
 *.bin
