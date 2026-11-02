@@ -59,7 +59,8 @@ cmake --build build-system --target sim
 ctest --test-dir build-system --output-on-failure
 ```
 
-Windows PC2023 (withlimon `verilator_bin.exe`) is a follow-up.
+Windows PC2023 (withlimon `verilator_bin.exe`): [`WINDOWS.md`](../cmake-system/WINDOWS.md)
+(both trees PASS at develop tip `b7decce`).
 
 ### 3) Pieces, if you want to run them apart
 

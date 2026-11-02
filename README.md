@@ -47,7 +47,8 @@ ctest --test-dir build-system --output-on-failure
 
 Default `make` is still upstream Icarus + VCD. Work is on **develop**.
 Next core on the ladder: **SERV**. Windows PC2023 CMake (withlimon
-`verilator_bin.exe`) is a follow-up.
+`verilator_bin.exe`) is proven for both dual-tree halves:
+[`cmake-system/WINDOWS.md`](cmake-system/WINDOWS.md).
 
 ## Table of Contents
 

@@ -12,8 +12,9 @@ Wraps the proven headless path `sim/verilator/` (same UART protocol as
 | Conan | not used in this tree |
 | Firmware | existing `src/darksocv.mem` (C `darkshell`) |
 
-Windows PC2023 (withlimon `verilator_bin.exe`, worker `D:\CursorWorker`) is a
-**follow-up**. PE / MSVC notes: [`WINDOWS.md`](WINDOWS.md).
+Windows PC2023 (withlimon `verilator_bin.exe` under MSYS2 MinGW64, worker
+`D:\CursorWorker`, develop tip `b7decce`) is **PASS**. How-to and the short
+evidence table: [`WINDOWS.md`](WINDOWS.md).
 
 ## Make path still green
 

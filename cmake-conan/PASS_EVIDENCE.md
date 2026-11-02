@@ -12,8 +12,10 @@ Conan 2 local recipe. Make/Bazel were **not** edited.
 | Conan | **2.34.0** (`pip install --user conan`) — same major/minor as PC2023 |
 | Firmware | existing `src/darksocv.mem` (C `darkshell`) |
 
-Windows PC2023 (Conan 2.34 + withlimon `verilator_bin.exe`, worker
-`D:\CursorWorker`) is a **follow-up**. See [`../cmake-system/WINDOWS.md`](../cmake-system/WINDOWS.md).
+Windows PC2023 (Conan **2.34.0** + withlimon `verilator_bin.exe` at
+`C:\msys64\mingw64\bin\verilator_bin.exe`, worker `D:\CursorWorker`, develop
+tip `b7decce`) is **PASS**: `build_sim.ps1` EXIT 0, ctest 1/1 (`sim_darksocv`),
+`verilator_exit=0`. How-to and table: [`../cmake-system/WINDOWS.md`](../cmake-system/WINDOWS.md).
 
 ## Configure
 
